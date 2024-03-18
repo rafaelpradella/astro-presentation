@@ -1,0 +1,123 @@
+---
+import { Image } from "astro:assets";
+import "@fontsource/jua";
+
+import IslandHero from "../assets/IslandHero.png";
+import Default from "@layouts/Default.astro";
+
+const PAGE_TITLE = `Blog Post`;
+---
+
+<Default title={PAGE_TITLE}>
+  <div class="blogLayout">
+    <header>
+			<div class="headerNav">
+				<h1>My Blog!!!</h1>
+				<nav>
+					<a>About</a>
+					<a>Categories</a>
+				</nav>
+			</div>
+      <Image src={IslandHero} alt="Illustration of a island" />
+    </header>
+    <article>
+      <h2>Explaining Islands</h2>
+      <p>2 min read | By Rafael Pradella</p>
+      <!-- <SharePost client:idle /> -->
+      <p>
+        Anim ea Lorem tempor esse est incididunt voluptate. Non fugiat veniam do
+        est excepteur. Consectetur dolore cupidatat proident officia dolor minim
+        consectetur commodo proident nisi excepteur. In incididunt esse eiusmod
+        cupidatat magna ipsum. Aute cupidatat laboris veniam aliqua.
+        Reprehenderit veniam consequat minim qui quis pariatur ipsum. Tempor ea
+        eiusmod esse elit sunt quis excepteur dolor voluptate proident
+        consectetur cupidatat.
+      </p>
+      <!-- <StockGraph client:only="react" /> -->
+      <p>
+        Anim ea Lorem tempor esse est incididunt voluptate. Non fugiat veniam do
+        est excepteur. Consectetur dolore cupidatat proident officia dolor minim
+        consectetur commodo proident nisi excepteur. In incididunt esse eiusmod
+        cupidatat magna ipsum. Aute cupidatat laboris veniam aliqua.
+        Reprehenderit veniam consequat minim qui quis pariatur ipsum. Tempor ea
+        eiusmod esse elit sunt quis excepteur dolor voluptate proident
+        consectetur cupidatat.
+      </p>
+    </article>
+    <aside>
+      <p>about me myself and I</p>
+      <!-- <AboutMe />
+      <AppStoreBanner client:media="pointer: coarse" />
+      <RateThePost client:load />
+      <TwitterFeed client:visible /> -->
+    </aside>
+  </div>
+</Default>
+
+<style scoped>
+  main {
+    padding: 2rem;
+    min-height: 100svh;
+  }
+  h1,
+  h2,
+  h3,
+  nav {
+    font-family: "Jua", sans-serif;
+  }
+
+	h1 {
+		display: inline-block;
+		font-size: 2rem;
+	}
+
+  img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .blogLayout {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    grid-template-rows: auto 1fr;
+    gap: 1rem;
+    height: 100%;
+		margin: 0 auto;
+    width: 100%;
+		max-width: 1080px;
+
+		nav {
+			color: rgb(var(--accent-dark));
+			cursor: pointer;
+			display: flex;
+			gap: 1rem;
+			text-decoration: underline;
+		}
+  }
+
+	.headerNav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: .5rem 1rem;
+		gap: .5rem;
+	}
+
+  header {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  article {
+    grid-column: 1 / 2;
+    grid-row: 2;
+		line-height: 1.75rem;
+		padding: 2rem;
+  }
+  aside {
+		display: flex;
+		gap: 1rem;
+    grid-column: 2 / 3;
+    grid-row: 2;
+  }
+</style>
