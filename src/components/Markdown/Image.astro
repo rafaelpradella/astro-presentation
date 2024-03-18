@@ -1,0 +1,9 @@
+---
+import { RAW_GITHUB_URL } from '@constants/AstroGithub';
+
+const { src, ...props } = Astro.props;
+
+const getImageUrl = (url: string) => url.startsWith('http') ? url : `${RAW_GITHUB_URL}/${url}`;
+---
+
+<img src={getImageUrl(src)} {...props} />

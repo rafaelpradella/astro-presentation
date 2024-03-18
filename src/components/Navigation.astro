@@ -1,0 +1,51 @@
+---
+const setCurrentAria = (path: string) => {
+  return Astro.url.pathname === path ? "page" : "false";
+};
+const mainPages = [
+  { title: "Readme", path: "/readme" },
+  { title: "Blog Post", path: "/blogPost" },
+];
+---
+
+<nav>
+  {
+    mainPages.map(({ path, title }) => (
+      <a href={path} aria-current={setCurrentAria(path)}>
+        {title}
+      </a>
+    ))
+  }
+</nav>
+
+<style scoped>
+  nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5rem;
+    padding: 0.5rem;
+    z-index: 10;
+  }
+
+  a {
+    align-items: center;
+    color: white;
+    display: inline-flex;
+    font-weight: 700;
+    text-decoration: none;
+    min-height: 50px;
+  }
+
+  a[aria-current="page"] {
+    pointer-events: none;
+    color: rgb(var(--accent));
+    text-decoration: underline;
+  }
+</style>

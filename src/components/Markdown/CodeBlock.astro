@@ -1,0 +1,7 @@
+---
+import { Prism } from '@astrojs/prism';
+
+const html = await Astro.slots.render('default');
+---
+
+<Prism lang="bash" code={html} />

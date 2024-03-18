@@ -10,8 +10,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.5.5",
     "@astrojs/check": "^0.5.9",
+    "@astrojs/prism": "^3.0.0",
+    "astro": "^4.5.5",
+    "astro-meta-tags": "^0.2.2",
+    "astro-remote": "^0.3.2",
     "typescript": "^5.4.2"
+  },
+  "devDependencies": {
+    "sass": "^1.72.0"
   }
 }
