@@ -2,9 +2,13 @@
 import { Image } from "astro:assets";
 import "@fontsource/jua";
 
-import IslandHero from "../assets/IslandHero.png";
+import IslandHero from "@assets/IslandHero.png";
 import Default from "@layouts/Default.astro";
 
+import { SharePost } from "./components/SharePost";
+import { StockGraph } from "./components/StockGraph.tsx";
+
+const postUrl = Astro.url;
 const PAGE_TITLE = `Blog Post`;
 ---
 
@@ -22,8 +26,8 @@ const PAGE_TITLE = `Blog Post`;
     </header>
     <article>
       <h2>Explaining Islands</h2>
-      <p>2 min read | By Rafael Pradella</p>
-      <!-- <SharePost client:idle /> -->
+      <p class="postMeta"><span>2 min read</span>  <span>by Rafael Pradella</span></p>
+      <SharePost postUrl={postUrl.toString()} client:idle />
       <p>
         Anim ea Lorem tempor esse est incididunt voluptate. Non fugiat veniam do
         est excepteur. Consectetur dolore cupidatat proident officia dolor minim
@@ -33,7 +37,25 @@ const PAGE_TITLE = `Blog Post`;
         eiusmod esse elit sunt quis excepteur dolor voluptate proident
         consectetur cupidatat.
       </p>
-      <!-- <StockGraph client:only="react" /> -->
+			<p>
+        Anim ea Lorem tempor esse est incididunt voluptate. Non fugiat veniam do
+        est excepteur. Consectetur dolore cupidatat proident officia dolor minim
+        consectetur commodo proident nisi excepteur. In incididunt esse eiusmod
+        cupidatat magna ipsum. Aute cupidatat laboris veniam aliqua.
+        Reprehenderit veniam consequat minim qui quis pariatur ipsum. Tempor ea
+        eiusmod esse elit sunt quis excepteur dolor voluptate proident
+        consectetur cupidatat.
+      </p>
+			<p>
+        Anim ea Lorem tempor esse est incididunt voluptate. Non fugiat veniam do
+        est excepteur. Consectetur dolore cupidatat proident officia dolor minim
+        consectetur commodo proident nisi excepteur. In incididunt esse eiusmod
+        cupidatat magna ipsum. Aute cupidatat laboris veniam aliqua.
+        Reprehenderit veniam consequat minim qui quis pariatur ipsum. Tempor ea
+        eiusmod esse elit sunt quis excepteur dolor voluptate proident
+        consectetur cupidatat.
+      </p>
+      <StockGraph symbol={'AAPL'} client:only="react" />
       <p>
         Anim ea Lorem tempor esse est incididunt voluptate. Non fugiat veniam do
         est excepteur. Consectetur dolore cupidatat proident officia dolor minim
@@ -67,9 +89,14 @@ const PAGE_TITLE = `Blog Post`;
   }
 
 	h1 {
+    color: rgb(var(--accent-light));
 		display: inline-block;
-		font-size: 2rem;
+		font-size: 2.5rem;
 	}
+
+  h2 {
+    font-size: 2rem;
+  }
 
   img {
     width: auto;
@@ -102,6 +129,13 @@ const PAGE_TITLE = `Blog Post`;
 		align-items: center;
 		padding: .5rem 1rem;
 		gap: .5rem;
+	}
+
+	.postMeta {
+		color: rgba(255,255,255,.7);
+		font-size: .9rem;
+		display: flex;
+		gap: 1rem;
 	}
 
   header {

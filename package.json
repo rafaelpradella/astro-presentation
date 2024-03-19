@@ -12,10 +12,17 @@
   "dependencies": {
     "@astrojs/check": "^0.5.9",
     "@astrojs/prism": "^3.0.0",
+    "@astrojs/react": "^3.1.0",
+    "@devexperts/dxcharts-lite": "^2.4.6",
     "@fontsource/jua": "^5.0.17",
+    "@types/react": "^18.2.67",
+    "@types/react-dom": "^18.2.22",
     "astro": "^4.5.5",
     "astro-meta-tags": "^0.2.2",
     "astro-remote": "^0.3.2",
+    "fp-ts": "^2.16.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "typescript": "^5.4.2"
   },
   "devDependencies": {
