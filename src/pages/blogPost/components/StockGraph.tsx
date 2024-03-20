@@ -64,7 +64,7 @@ export const ChartItem: FC<TChartsData> = ({ title, init, dataSize }: TChartsDat
 
   const [chartInstance, setChartInstance] = useState<Option<Chart>>(none);
 
-  const chartInitRef = useCallback((node: HTMLElement) => {
+  const chartInitRef = useCallback((node: HTMLDivElement) => {
     if (!node) return;
     const api = createChart(node, DEFAULT_CHART_CONFIG);
 

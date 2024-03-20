@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@iconify/react": "^4.1.1",
+    "@types/ua-parser-js": "^0.7.39",
     "sass": "^1.72.0"
   }
 }
