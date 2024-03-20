@@ -3,5 +3,5 @@
 }
 
 @media (pointer: coarse) {
-  .banner { display: flex;}
+  .banner { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1rem; text-decoration: none;}
 }

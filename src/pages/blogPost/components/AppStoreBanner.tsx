@@ -4,33 +4,39 @@ import { useEffect, useState } from "react";
 
 import css from "./AppStoreBanner.module.css";
 
+const MAIN_ICON = {
+  generic: "basil:apps-outline",
+  ios: "basil:app-store-solid",
+  android: "basil:google-play-solid"
+};
 const APP_LINKS = {
-  desktop: "https://www.apple.com/pt/app-store/",
-  iOS: "itms://itunes.apple.com/app/apple-store/id123456",
+  generic: "https://landingpage.test/app",
+  ios: "itms://itunes.apple.com/app/apple-store/id123456",
   android: "market://launch?id=123456",
 };
 
 const checkUserAgent = () => {
-  const { device } = UAParser(navigator.userAgent);
+  const {os} = UAParser(navigator.userAgent);
 
-  return { isMobile: device.os.is("mobile"), isIos: device.os.is("iOS") };
+  return { isMobile: matchMedia('(pointer:coarse)').matches, isIos: os.name=== "iOS" };
 };
 
+type TLinkUserTo = 'android' | 'ios' | 'generic';
+
 export const AppStoreBanner = () => {
-  const [appLink, setAppLink] = useState(APP_LINKS.desktop);
+  const [bannerMode, setBannerMode] = useState<TLinkUserTo>('generic');
 
   useEffect(() => {
-    console.log(`HYDRATED APPSTOREBANNER`);
     const { isMobile, isIos } = checkUserAgent();
-    if (!isMobile) return setAppLink("INVALID_LINK");
+    if (!isMobile) return;
 
-    isIos ? setAppLink(APP_LINKS.iOS) : setAppLink(APP_LINKS.android);
+    setBannerMode(isIos ? 'ios' : 'android');
   }, []);
 
   return (
     <a
       className={css.banner}
-      href={appLink}
+      href={APP_LINKS[bannerMode]}
       target="_blank"
       style={{
         borderRadius: "1rem",
@@ -41,11 +47,7 @@ export const AppStoreBanner = () => {
         alignItems: "center",
       }}
     >
-      <Icon
-        icon="simple-icons:appstore"
-        role="presentation"
-        style={{ fontSize: "2rem" }}
-      />
+      <Icon style={{ color: '#EEE', fontSize: '2rem' }} icon={MAIN_ICON[bannerMode]} />
       <p>Download our app</p>
     </a>
   );
