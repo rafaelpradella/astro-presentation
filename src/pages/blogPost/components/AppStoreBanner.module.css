@@ -1,0 +1,7 @@
+@media (pointer: fine) {
+  .banner { display: none;}
+}
+
+@media (pointer: coarse) {
+  .banner { display: flex;}
+}

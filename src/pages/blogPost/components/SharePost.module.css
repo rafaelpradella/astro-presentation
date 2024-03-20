@@ -1,0 +1,6 @@
+.button { background-color: unset; border: none; cursor: pointer; transition: transform .3s ease;}
+.button:hover { transform: scale(1.2); }
+
+.icon { color: rgb(var(--accent)); font-size: 1.2rem; }
+
+.block { display: inline-flex; flex-direction: row; margin: 0; gap: .5rem; list-style-type: none;}

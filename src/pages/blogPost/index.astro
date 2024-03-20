@@ -7,6 +7,8 @@ import Default from "@layouts/Default.astro";
 
 import { SharePost } from "./components/SharePost";
 import { StockGraph } from "./components/StockGraph.tsx";
+import { CommentsSection } from "./components/CommentsSection.tsx";
+import { AppStoreBanner } from "./components/AppStoreBanner.tsx";
 
 const postUrl = Astro.url;
 const PAGE_TITLE = `Blog Post`;
@@ -22,12 +24,15 @@ const PAGE_TITLE = `Blog Post`;
 					<a>Categories</a>
 				</nav>
 			</div>
-      <Image src={IslandHero} alt="Illustration of a island" />
+      <Image src={IslandHero} alt="Illustration of a island" loading="eager"/>
     </header>
     <article>
       <h2>Explaining Islands</h2>
-      <p class="postMeta"><span>2 min read</span>  <span>by Rafael Pradella</span></p>
-      <SharePost postUrl={postUrl.toString()} client:idle />
+      <div class="postMeta">
+        <span>2 min read</span>
+        <span>by Rafael Pradella</span>
+        <SharePost postUrl={postUrl.toString()} client:idle />
+      </div>
       <p>
         Anim ea Lorem tempor esse est incididunt voluptate. Non fugiat veniam do
         est excepteur. Consectetur dolore cupidatat proident officia dolor minim
@@ -66,12 +71,13 @@ const PAGE_TITLE = `Blog Post`;
         consectetur cupidatat.
       </p>
     </article>
+    <section>
+      <h3>Comments about "{PAGE_TITLE}": (2)</h3>
+      <CommentsSection client:visible />
+    </section>
     <aside>
-      <p>about me myself and I</p>
-      <!-- 
-      <AboutMe />
       <AppStoreBanner client:media="pointer: coarse" />
-      <RateThePost client:load />
+<!--       <RateThePost client:load />
       <TwitterFeed client:visible /> -->
     </aside>
   </div>
@@ -142,6 +148,10 @@ const PAGE_TITLE = `Blog Post`;
   header {
     grid-column: 1 / -1;
     grid-row: 1;
+
+    img {
+      border-radius: 1rem;
+    }
   }
   article {
     grid-column: 1 / 2;
@@ -151,6 +161,7 @@ const PAGE_TITLE = `Blog Post`;
   }
   aside {
 		display: flex;
+    flex-direction: column;
 		gap: 1rem;
     grid-column: 2 / 3;
     grid-row: 2;
