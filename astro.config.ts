@@ -26,7 +26,7 @@ const alias = {
 // https://astro.build/config
 export default defineConfig({
   integrations: [metaTags(), react(), icon(), abTestDirective()],
-  output: "static",
+  output: "hybrid",
   adapter: vercel(),
   vite: {
     resolve: { alias },
