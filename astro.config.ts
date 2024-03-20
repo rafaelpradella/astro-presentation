@@ -1,4 +1,5 @@
-import { resolve } from "path";
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
 import { defineConfig } from "astro/config";
 import metaTags from "astro-meta-tags";
 import react from "@astrojs/react";
@@ -6,8 +7,6 @@ import vercel from "@astrojs/vercel/serverless";
 
 import { default as abTestDirective } from "./src/utils/directives/abTest/register";
 import icon from "astro-icon";
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
