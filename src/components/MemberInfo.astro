@@ -1,0 +1,64 @@
+---
+import { Image } from "astro:assets";
+
+type TMember = {
+  id: number;
+  name: string;
+  role: "engineering" | "hr" | "design" | "sales";
+  startDate?: Date;
+  image?: string | undefined;
+};
+
+interface Props {
+  data: TMember;
+}
+
+const { data } = Astro.props;
+---
+
+<section>
+  {
+    !!data?.image ? (
+      <Image src={data.image} alt={`Portrait of ${data.name}`} />
+    ) : (
+      <></>
+    )
+  }
+  <span>{data.name}</span>
+  <span class="teamRole">/* @ {data.role} Team */</span>
+</section>
+
+<style lang="scss">
+  :global(.imgPlaceholder) {
+    color: rgba(255,255,255,.5);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 3rem;
+  }
+  .teamRole {
+    color: rgba(255,255,255,.5);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: .85rem;
+    font-weight: 600;
+  }
+  img, .imgPlaceholder {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  img {
+    aspect-ratio: 2/1;
+    width: auto;
+    height: 100%;
+  }
+  section {
+    position: relative;
+    background-color: #000;
+    border-radius: 1rem;
+    display: inline-flex;
+    gap: 0.2rem;
+    flex-direction: column;
+    padding: 1rem;
+    padding-left: 25%;
+    width: 100%;
+  }
+</style>

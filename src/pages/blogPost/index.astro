@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
 import "@fontsource/jua";
 
 import IslandHero from "@assets/IslandHero.png";
@@ -10,9 +11,11 @@ import { StockGraph } from "./components/StockGraph.tsx";
 import { CommentsSection } from "./components/CommentsSection.tsx";
 import { AppStoreBanner } from "./components/AppStoreBanner.tsx";
 import { RatePost } from "./components/RatePost.tsx";
+import MemberInfo from "@components/MemberInfo.astro";
 
 const postUrl = Astro.url;
 const PAGE_TITLE = `Blog Post`;
+const { data: authorData } = await getEntry('team', 'rafaelpradella');
 ---
 
 <Default title={PAGE_TITLE}>
@@ -31,7 +34,13 @@ const PAGE_TITLE = `Blog Post`;
       <h2>Explaining Islands</h2>
       <div class="postMeta">
         <span>2 min read</span>
-        <span>by Rafael Pradella</span>
+        <div class="authorLabel">
+          <span>by Rafael Pradella</span>
+          <div class="authorPopup">
+            <MemberInfo data={authorData} />
+          </div>
+        </div>
+        
         <SharePost postUrl={postUrl.toString()} client:idle />
       </div>
       <p>
@@ -86,6 +95,24 @@ const PAGE_TITLE = `Blog Post`;
 </Default>
 
 <style scoped>
+  .authorLabel {
+    position: relative;
+
+    &:hover .authorPopup {
+      opacity: 1;
+      visibility: visible;
+      transition: translateY(100%);
+    }
+  }
+  .authorPopup {
+    position: absolute;
+    bottom: -5px;
+    min-width: 200px;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(90%);
+    transition: all .4s ease;
+  }
   .phantomBtn {
     position: fixed;
     right: 1rem;
