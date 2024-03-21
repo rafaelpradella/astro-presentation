@@ -7,7 +7,7 @@ import css from "./AppStoreBanner.module.css";
 const MAIN_ICON = {
   generic: "basil:apps-outline",
   ios: "basil:app-store-solid",
-  android: "basil:google-play-solid"
+  android: "basil:google-play-solid",
 };
 const APP_LINKS = {
   generic: "https://landingpage.test/app",
@@ -16,21 +16,24 @@ const APP_LINKS = {
 };
 
 const checkUserAgent = () => {
-  const {os} = UAParser(navigator.userAgent);
+  const { os } = UAParser(navigator.userAgent);
 
-  return { isMobile: matchMedia('(pointer:coarse)').matches, isIos: os.name=== "iOS" };
+  return {
+    isMobile: matchMedia("(pointer:coarse)").matches,
+    isIos: os.name === "iOS",
+  };
 };
 
-type TLinkUserTo = 'android' | 'ios' | 'generic';
+type TLinkUserTo = "android" | "ios" | "generic";
 
 export const AppStoreBanner = () => {
-  const [bannerMode, setBannerMode] = useState<TLinkUserTo>('generic');
+  const [bannerMode, setBannerMode] = useState<TLinkUserTo>("generic");
 
   useEffect(() => {
     const { isMobile, isIos } = checkUserAgent();
     if (!isMobile) return;
 
-    setBannerMode(isIos ? 'ios' : 'android');
+    setBannerMode(isIos ? "ios" : "android");
   }, []);
 
   return (
@@ -47,7 +50,10 @@ export const AppStoreBanner = () => {
         alignItems: "center",
       }}
     >
-      <Icon style={{ color: '#EEE', fontSize: '2rem' }} icon={MAIN_ICON[bannerMode]} />
+      <Icon
+        style={{ color: "#EEE", fontSize: "2rem" }}
+        icon={MAIN_ICON[bannerMode]}
+      />
       <p>Download our app</p>
     </a>
   );

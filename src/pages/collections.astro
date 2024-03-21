@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+import Default from "@layouts/Default.astro";
+import MemberInfo from "@components/MemberInfo.astro";
+
+const PAGE_TITLE =`Team List`;
+const teamMembers = await getCollection('team');
+---
+
+<Default title={PAGE_TITLE}>
+	<main>
+		<h1 class="text-gradient">{PAGE_TITLE}</h1>
+    <ul>
+      {teamMembers.map(({ data }) => <MemberInfo data={data} />)}
+    </ul>
+	</main>
+</Default>
+
+<style scoped>
+	main { padding: 2rem; min-height: 100svh; }
+</style>

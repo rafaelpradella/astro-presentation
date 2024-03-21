@@ -24,6 +24,7 @@
     "astro-meta-tags": "^0.2.2",
     "astro-remote": "^0.3.2",
     "fp-ts": "^2.16.4",
+    "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-simple-star-rating": "^5.1.7",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@iconify/react": "^4.1.1",
+    "@types/ua-parser-js": "^0.7.39",
     "sass": "^1.72.0"
   }
 }
